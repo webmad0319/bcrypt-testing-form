@@ -1,0 +1,25 @@
+<form method="POST" action="/{{action}}" id="theForm">
+  <input type="text" name="username" value="natalia" id="username">
+  <input type="password" name="password" value="pwd1" id="password">
+
+  <input type="submit" name="" id="submitButton" value="Submit form">
+</form>
+<script>
+  var failedTimes = 0
+
+  document.querySelector("#theForm").onsubmit = function (e){
+    e.preventDefault()
+
+    if (document.querySelector("#password").value.length < 8) {
+      console.log("password not valid!");
+      failedTimes++
+
+      if (failedTimes > 5) {
+        document.querySelector("#submitButton").setAttribute("disabled", "disabled")
+      }
+      return
+    }
+
+    document.querySelector("#theForm").submit()
+  }
+</script>
